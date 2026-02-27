@@ -1,6 +1,6 @@
 import { getAllUsers } from "@/actions/admin.actions";
 import AdminGetAllUsers from "@/components/modules/admin/AdminGetAllUsers";
-import { UserType } from "@/types/routes.type";
+export const dynamic = "force-dynamic";
 
 export default async function AllUsersPage () {
 

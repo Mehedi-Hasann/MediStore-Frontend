@@ -1,6 +1,8 @@
 import { getMyAddress } from "@/actions/customer.actions";
 import AddressForm from "@/components/modules/customer/CustomerCheckOut";
 
+export const dynamic = "force-dynamic";
+
 interface CheckOutProps {
   searchParams: { [key: string]: string | undefined };
 }

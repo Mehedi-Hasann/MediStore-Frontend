@@ -3,7 +3,10 @@ import CustomerCartItem from "@/components/modules/customer/CustomerCartItem";
 import { env } from "@/env";
 import { CartItemProps } from "@/types/routes.type";
 
+export const dynamic = "force-dynamic";
+
 const API_URL = env.API_URL;
+
 
 export default async function CartPage () {
 

@@ -1,6 +1,8 @@
 import { MedicinesTable } from "@/components/modules/seller/SellerMedicineTable"
 import { medicineService } from "@/services/medicine.service"
 
+export const dynamic = "force-dynamic";
+
 export default async function AllMedicinesPage() {
   const allMedicine = await medicineService.getAllMedicine()
 
