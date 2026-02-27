@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { MedicineData } from "@/services/medicine.service";
 import {  useForm } from "@tanstack/react-form";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
