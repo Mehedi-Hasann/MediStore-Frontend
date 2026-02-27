@@ -2,7 +2,7 @@
 
 import { AdminOrderCard } from "@/components/modules/admin/AdminGetAllOrder";
 import { adminService } from "@/services/admin.service";
-
+export const dynamic = "force-dynamic";
 
 export default async function OrdersPage () {
   const {data} = await adminService.getAllOrder();

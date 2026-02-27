@@ -20,7 +20,7 @@ interface AddressProps {
 }
 
 export default function AddressForm({slug, address }: AddressProps) {
-  // console.log('hi slug => ',slug);
+
 
   
   const [fullName, setFullName] = useState(address?.fullName || "");
