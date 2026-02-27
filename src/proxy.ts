@@ -10,7 +10,6 @@ export async function proxy (request : NextRequest) {
   let role = null;
   const {data} = await userService.getSession();
   // console.log(data);
-  // console.log(data.user.role);
 
   if(data){
     isAuthenticated = true;
