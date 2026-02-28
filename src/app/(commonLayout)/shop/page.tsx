@@ -1,17 +1,17 @@
 
+import { getAllMedicine } from "@/actions/medicine.actions";
 import MedicineCards from "@/components/modules/home/MedicineCard";
 import { medicineService } from "@/services/medicine.service";
 import { MedicinePost } from "@/types/routes.type";
 
 export default async function Home() {
-  const {data} = await medicineService.getAllMedicine(
-    {
-      // search : "tulos",
-      // price : 10
-    }
-  );
+  // const {data} = await medicineService.getAllMedicine();
+  // console.log('data1 => ',data);
 
-  // console.log(data);
+   const {data} = await getAllMedicine();
+ 
+
+  
   return (
     <div className="grid grid-cols-3 max-w-7xl mx-auto px-4 gap-6">
       {

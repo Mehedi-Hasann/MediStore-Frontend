@@ -2,6 +2,7 @@
 
 import {  medicineService } from "@/services/medicine.service";
 import { CreateNewMedicine, MedicineData, OrderStatus } from "@/types/routes.type";
+import { updateTag } from "next/cache";
 
 export const getSingleMedicine = async(slug : string) => {
   const res = await medicineService.getMedicineById(slug)
@@ -10,6 +11,12 @@ export const getSingleMedicine = async(slug : string) => {
 
 export const getAllCategory = async () => {
   const res = await medicineService.getAllCategory();
+  // console.log(res);
+  return res;
+}
+export const getAllMedicine = async () => {
+  const res = await medicineService.getAllMedicine();
+  // updateTag("medicinePosts");
   // console.log(res);
   return res;
 }

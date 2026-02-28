@@ -20,6 +20,13 @@ export interface Order {
   totalAmount : number,
   status : OrderStatus
 }
+export interface Review {
+  id : string,
+  userId : string,
+  medicineId : string,
+  rating : string,
+  description : string
+}
 
 export interface MedicinePost {
   id : string | number,
@@ -31,6 +38,7 @@ export interface MedicinePost {
   createdAt : string,
   updatedAt : string,
   orders : Order[]
+  reviews : Review[]
 }
 
 export interface Medicine {

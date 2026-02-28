@@ -1,7 +1,5 @@
-
 import AddToCartButton from "@/components/modules/customer/AddToCartButton";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { medicineService } from "@/services/medicine.service";
 
 export default async function MedicinePage({
@@ -81,7 +79,34 @@ export default async function MedicinePage({
 
         {/* Action */}
         <div>
-            <AddToCartButton  medicineId={data.id} />
+          <AddToCartButton medicineId={data.id} />
+        </div>
+
+        {/* Reviews Section */}
+        <div className="space-y-6">
+          <h2 className="text-2xl font-semibold">Customer Reviews</h2>
+
+          <div className="space-y-4">
+            {data.reviews && data.reviews.length > 0 ? (
+              data.reviews.map((review: any) => (
+                <div
+                  key={review.id}
+                  className="bg-card text-card-foreground p-5 rounded-2xl border shadow-sm"
+                >
+                  <p className="text-sm text-muted-foreground mb-2">
+                    {new Date(review.createdAt).toLocaleDateString()}
+                  </p>
+                  <p className="text-base">
+                    {review.description}
+                  </p>
+                </div>
+              ))
+            ) : (
+              <div className="bg-card text-card-foreground p-5 rounded-2xl border shadow-sm text-muted-foreground">
+                No reviews yet
+              </div>
+            )}
+          </div>
         </div>
 
       </div>

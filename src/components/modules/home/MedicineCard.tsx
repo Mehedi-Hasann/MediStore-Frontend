@@ -12,6 +12,7 @@ type Props = {
 };
 
 export default function MedicineCards({ item }: Props) {
+  // console.log(item);
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
