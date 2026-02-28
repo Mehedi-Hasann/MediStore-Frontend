@@ -2,7 +2,7 @@
 import { cookies } from "next/headers";
 import { medicineService } from "./medicine.service";
 import { updateTag } from "next/cache";
-import { Address, Order } from "@/types/routes.type";
+import { Address, CreateReview, Order } from "@/types/routes.type";
 
 const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
@@ -279,21 +279,28 @@ export const customerService = {
     }
   },
 
-  // orderItem : async function (id : string) {
-  //   try {
-  //     const cookieStore = await cookies();
-  //     const res = await fetch(`${API_URL}/api/orders`,{
-  //       method : "POST",
-  //       headers : {
-  //         "Content-Type" : "application/json",
-  //         Cookie : cookieStore.toString()
-  //       },
-  //       body : JSON.stringify(data)
-  //     })
-  //     const data = await res.json();
-  //     return {data : data, error : null}
-  //   } catch (error) {
-  //     return {data : null, error : {message : "Ordering Item Failed"}}
-  //   }
-  // },
+  createReview : async function ({medicineId, description} : CreateReview) {
+    const reviewData = {
+      medicineId,
+      description
+    }
+    console.log(reviewData);
+    
+    try {
+      const cookieStore = await cookies();
+      const res = await fetch(`${API_URL}/api/customer/review`,{
+        method : "POST",
+        headers : {
+          "Content-Type" : "application/json",
+          Cookie : cookieStore.toString()
+        },
+        body : JSON.stringify(reviewData)
+      })
+      const data = await res.json();
+      return {data : data, error : null};
+
+    } catch (error) {
+      return {data : null, error : {message : "Item decrement failed"}}
+    }
+  },
 }

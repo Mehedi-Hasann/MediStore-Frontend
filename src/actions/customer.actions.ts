@@ -1,7 +1,7 @@
 "use server"
 
 import { customerService, EditInfo } from "@/services/customer.service"
-import { Address, Order } from "@/types/routes.type";
+import { Address, CreateReview, Order } from "@/types/routes.type";
 import { updateTag } from "next/cache";
 
 export const getMyInfo = async() => {
@@ -70,6 +70,11 @@ export const createMyAddress = async(addressData : Address) => {
 
 export const getMyAddress = async() => {
   const res = await customerService.getMyAddress();
+  return res;
+}
+
+export const createReview = async({medicineId, description} : CreateReview) => {
+  const res = await customerService.createReview({medicineId, description});
   return res;
 }
 

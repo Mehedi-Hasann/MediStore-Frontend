@@ -28,6 +28,11 @@ export interface Review {
   description : string
 }
 
+export interface CreateReview{
+  medicineId : string,
+  description ?: string
+}
+
 export interface MedicinePost {
   id : string | number,
   name : string,
