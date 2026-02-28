@@ -4,7 +4,7 @@ import { medicineService } from "./medicine.service";
 import { updateTag } from "next/cache";
 import { Address, Order } from "@/types/routes.type";
 
-const API_URL = env.API_URL;
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export interface EditInfo{
   name : string,
@@ -15,7 +15,7 @@ export const customerService = {
   getMyInfo : async function () {
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/api/auth/me`,{
+      const res = await fetch(`${API_URL}/api/customer/me`,{
         method : "GET",
         headers : {
           "Content-Type" : "application/json",
@@ -34,7 +34,7 @@ export const customerService = {
     // console.log(payload);
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/api/auth/profile`,{
+      const res = await fetch(`${API_URL}/api/customer/profile`,{
         method : "PUT",
         headers : {
           "Content-Type" : "application/json",
@@ -54,7 +54,7 @@ export const customerService = {
     try {
       // const medicine = await medicineService.getMedicineById();
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/api/auth/cart`,{
+      const res = await fetch(`${API_URL}/api/customer/cart`,{
         method : "GET",
         headers : {
           "Content-Type" : "application/json",
@@ -78,7 +78,7 @@ export const customerService = {
     try {
   
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/api/auth/cart/${id}`,{
+      const res = await fetch(`${API_URL}/api/customer/cart/${id}`,{
         method : "GET",
         headers : {
           "Content-Type" : "application/json",
@@ -97,7 +97,7 @@ export const customerService = {
   addToCart : async function (medicineId : string) {
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/api/auth/cart`,{
+      const res = await fetch(`${API_URL}/api/customer/cart`,{
         method : "POST",
         headers : {
           "Content-Type" : "application/json",
@@ -118,7 +118,7 @@ export const customerService = {
 
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/api/auth/cart`,{
+      const res = await fetch(`${API_URL}/api/customer/cart`,{
         method : "POST",
         headers : {
           "Content-Type" : "application/json",
@@ -139,7 +139,7 @@ export const customerService = {
 
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/api/auth/decrement`,{
+      const res = await fetch(`${API_URL}/api/customer/decrement`,{
         method : "POST",
         headers : {
           "Content-Type" : "application/json",
@@ -161,7 +161,7 @@ export const customerService = {
 
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/api/auth/${id}`,{
+      const res = await fetch(`${API_URL}/api/customer/${id}`,{
         method : "DELETE",
         headers : {
           "Content-Type" : "application/json",
@@ -203,7 +203,7 @@ export const customerService = {
 
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/api/auth/orders`,{
+      const res = await fetch(`${API_URL}/api/customer/orders`,{
         method : "GET",
         headers : {
           "Content-Type" : "application/json",
@@ -225,7 +225,7 @@ export const customerService = {
 
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/api/auth/orders/${id}`,{
+      const res = await fetch(`${API_URL}/api/customer/orders/${id}`,{
         method : "GET",
         headers : {
           "Content-Type" : "application/json",
@@ -244,7 +244,7 @@ export const customerService = {
     
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/api/auth/address`,{
+      const res = await fetch(`${API_URL}/api/customer/address`,{
         method : "POST",
         headers : {
           "Content-Type" : "application/json",
@@ -264,7 +264,7 @@ export const customerService = {
     
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/api/auth/my-address`,{
+      const res = await fetch(`${API_URL}/api/customer/my-address`,{
         method : "GET",
         headers : {
           "Content-Type" : "application/json",

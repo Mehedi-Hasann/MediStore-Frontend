@@ -7,8 +7,6 @@ export default async function AllMedicinesPage() {
   const allMedicine = await medicineService.getAllMedicine()
 
   const medicines = allMedicine?.data || []
-  // console.log(medicines.data);
-  
 
   return (
     <div className="space-y-6">

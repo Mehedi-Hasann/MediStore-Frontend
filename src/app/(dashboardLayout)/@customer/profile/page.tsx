@@ -6,11 +6,11 @@ export const dynamic = "force-dynamic";
 export default async function ProfilePage () {
 
   const data = await getMyInfo();
-  // console.log(data.data);
   
   return (
     
     <div>
+      <h1>User Profile Page</h1>
 
       <CustomerProfileCard user = {data.data} />
 

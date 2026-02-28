@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 export default async function AllUsersPage () {
 
   const {data} = await getAllUsers();
-  // console.log(data.data);
+  
   
   return (
     

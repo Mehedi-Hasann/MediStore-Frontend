@@ -5,20 +5,24 @@ import { CartItemProps } from "@/types/routes.type";
 
 export const dynamic = "force-dynamic";
 
-const API_URL = env.API_URL;
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 
 export default async function CartPage () {
 
   const {data} = await getMyCart();
   
-  const enrichedCartItem = await Promise.all(
-    data.map(async (item : CartItemProps) => {
-      const res = await fetch(`${API_URL}/api/medicines/${item.medicineId}`);
-      const medicine = await res.json();
-      return {...item, medicine}
-    })
-  )
+const enrichedCartItem = await Promise.all(
+  (data ?? []).map(async (item: CartItemProps) => {
+    const res = await fetch(`${API_URL}/api/medicines/${item.medicineId}`);
+    const medicine = await res.json();
+
+    return {
+      ...item,
+      medicine,
+    };
+  })
+);
   
   return (
     

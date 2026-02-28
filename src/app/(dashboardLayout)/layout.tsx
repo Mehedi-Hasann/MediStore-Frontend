@@ -10,9 +10,8 @@ import { userService } from "@/services/user.service"
 export default async function Page({admin,customer,seller}: {admin: React.ReactNode,customer: React.ReactNode,seller:React.ReactNode}) {
   
   const session = await userService.getSession();
-  console.log('session => ',session);
+
   const data =  session.data.user.role;
-  // console.log(data);
   const userInfo = {
     role : data
   }
