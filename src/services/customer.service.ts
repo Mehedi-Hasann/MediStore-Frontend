@@ -284,7 +284,6 @@ export const customerService = {
       medicineId,
       description
     }
-    console.log(reviewData);
     
     try {
       const cookieStore = await cookies();
@@ -294,9 +293,11 @@ export const customerService = {
           "Content-Type" : "application/json",
           Cookie : cookieStore.toString()
         },
+        credentials : "include",
         body : JSON.stringify(reviewData)
       })
       const data = await res.json();
+      console.log(data);
       return {data : data, error : null};
 
     } catch (error) {
