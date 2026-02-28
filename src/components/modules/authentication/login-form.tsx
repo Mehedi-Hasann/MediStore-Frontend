@@ -56,7 +56,7 @@ const router = useRouter();
   const handleGoogleLogin = async() => {
     const data = await authClient.signIn.social({
       provider : "google",
-      callbackURL : "http://localhost:3000"
+      callbackURL : process.env.NEXT_PUBLIC_FRONTEND_URL
     })
   }
 

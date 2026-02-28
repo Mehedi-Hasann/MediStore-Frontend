@@ -32,7 +32,7 @@ interface Props {
 export function MedicinesTable({ medicines }: Props) {
   const [stockChanges, setStockChanges] = useState<Record<string, number>>({});
 
-  if (!medicines.length) return <p>No medicines found.</p>;
+  if (!medicines.length) <p>No medicines found.</p>;
 
   const handleDelete = async (id : string) => {
     const toastId = toast.loading("Deleting...")

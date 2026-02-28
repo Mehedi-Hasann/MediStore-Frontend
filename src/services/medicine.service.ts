@@ -1,25 +1,27 @@
-import { env } from "@/env";
+
 import { CreateNewMedicine, MedicineData, medicineParams, OrderStatus } from "@/types/routes.type";
-import { revalidateTag, updateTag } from "next/cache";
+import { updateTag } from "next/cache";
 import { cookies } from "next/headers";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 
 export const medicineService = {
   createMedicine : async function (data : CreateNewMedicine) {
+    // console.log(data);
     try {
       const cookieStore = await cookies(); 
-      const {id} = await this.getSingleCategory(data.category);
+      const val = await this.getSingleCategory(data.category);
       // console.log(id);
       
       const updatedData = {
         name : data.name,
         price : data.price,
         stock : data.stock,
-        categoryId : id
+        categoryName : data.category
       }
-      console.log(updatedData);
+      console.log('hi ',updatedData);
+      
       
       const res = await fetch(`${API_URL}/api/seller/medicines`,{
         method: "POST",
@@ -38,7 +40,7 @@ export const medicineService = {
       }
       return {data : result, error : null }
     } catch (error) {
-      return {data : null, error : {messaage : "New Medicine Creation Failed"}}
+      return {data : null, error : {message : "New Medicine Creation Failed"}}
     }
   },
   getSingleCategory : async function (cName : string) {

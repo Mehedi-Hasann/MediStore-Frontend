@@ -1,10 +1,10 @@
-import { env } from "@/env";
+
 import { cookies } from "next/headers";
 import { medicineService } from "./medicine.service";
 import { updateTag } from "next/cache";
 import { Address, Order } from "@/types/routes.type";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 export interface EditInfo{
   name : string,

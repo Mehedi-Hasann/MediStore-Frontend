@@ -1,11 +1,11 @@
 import { getMyCart } from "@/actions/customer.actions";
 import CustomerCartItem from "@/components/modules/customer/CustomerCartItem";
-import { env } from "@/env";
+
 import { CartItemProps } from "@/types/routes.type";
 
 export const dynamic = "force-dynamic";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 
 export default async function CartPage () {

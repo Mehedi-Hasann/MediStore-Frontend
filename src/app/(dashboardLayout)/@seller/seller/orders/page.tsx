@@ -10,7 +10,6 @@ export default async function OrdersPage () {
   return (
     
     <div>
-      <h1>seller order</h1>
 
       <SellerOrderCard items = {data} />
       

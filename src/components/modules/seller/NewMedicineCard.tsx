@@ -41,7 +41,7 @@ export function NewMedicineCard () {
         category : value.categoryName
       };
       try {
-        const res = await createMedicine(medicineData);
+        await createMedicine(medicineData);
         toast.success("Medicine Created Successfully",{id : toastId})
         form.reset();
       } catch (error) {
@@ -53,7 +53,7 @@ export function NewMedicineCard () {
   useEffect(() => {
     const fetchCategories = async () => {
       const data = await getAllCategory();
-      // console.log("from newMedicine Card ",data);
+      
       if(data?.data){
         setCategories(data.data);
         form.setFieldValue("categoryName", data.data[0].categoryName);
@@ -61,7 +61,7 @@ export function NewMedicineCard () {
     }
     fetchCategories();
   },[])
-  // console.log(categories);
+
   
   return (
     

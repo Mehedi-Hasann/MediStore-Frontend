@@ -9,9 +9,6 @@ export async function proxy (request : NextRequest) {
   let isAuthenticated = false;
   let role = null;
   const {data} = await userService.getSession();
-  // console.log('data is => ',data.user.role);
-
-    console.log('isAuthenticated before login => ',isAuthenticated);
 
   if(data){
     isAuthenticated = true;
@@ -21,7 +18,7 @@ export async function proxy (request : NextRequest) {
   if(!isAuthenticated){
     return NextResponse.redirect( new URL("/login",request.url) );
   }
-  console.log('isAuthenticated after login => ',isAuthenticated);
+
   if(role===Roles.admin && (pathname.startsWith('/dashboard') || pathname.startsWith('/seller') || pathname.startsWith('/customer') ) ){
     return NextResponse.redirect( new URL("/admin",request.url) );
   }
