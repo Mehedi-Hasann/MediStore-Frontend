@@ -71,7 +71,7 @@ export const adminService = {
         }
       });
       const data = await res.json();
-      // console.log("here we go => ",data);
+    
       return {data : data , error : null}
     } catch (error) {
       return {data : null, error : {message : "Fetch Category is not Happen.Internal Server Error"}}

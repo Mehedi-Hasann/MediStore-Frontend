@@ -293,7 +293,6 @@ export const customerService = {
           "Content-Type" : "application/json",
           Cookie : cookieStore.toString()
         },
-        credentials : "include",
         body : JSON.stringify(reviewData)
       })
       const data = await res.json();

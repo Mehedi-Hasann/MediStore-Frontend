@@ -29,7 +29,7 @@ export default function AdminGetAllCategoryCard({ data }: Props) {
             <p>{category.description || "No description available"}</p>
           </CardContent>
             <div className="flex justify-end pr-2 pt-2 border-t">
-<Link href={`/admin/categories/${category.id}`}>
+<Link href={`/admin/categories/${category.categoryName}`}>
               <Button
                 variant="outline"
                 className="border-gray-700 text-gray-300 hover:bg-gray-800"

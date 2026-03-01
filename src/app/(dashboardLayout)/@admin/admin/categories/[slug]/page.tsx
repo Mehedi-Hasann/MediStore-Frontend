@@ -3,8 +3,10 @@ import AdminSingleCategoryCard from "@/components/modules/admin/AdminSingleCateg
 
 export default async function SingleCategoryPage ({params} : {params : {slug : string}}) {
   const {slug} = await params;
+  console.log(slug);
 
   const data = await getSingleCategory(slug as string);
+  console.log(data);
 
   return (
     
