@@ -1,6 +1,6 @@
 
 import { CreateNewMedicine, MedicineData, medicineParams, OrderStatus } from "@/types/routes.type";
-import { updateTag } from "next/cache";
+import { revalidateTag, updateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
@@ -20,7 +20,7 @@ export const medicineService = {
         stock : data.stock,
         categoryName : data.category
       }
-      console.log('hi ',updatedData);
+      // console.log('hi ',updatedData);
       
       
       const res = await fetch(`${API_URL}/api/seller/medicines`,{
@@ -38,6 +38,7 @@ export const medicineService = {
           error: { message: "Error: Post not created." },
         };
       }
+      updateTag("medicinePosts");
       return {data : result, error : null }
     } catch (error) {
       return {data : null, error : {message : "New Medicine Creation Failed"}}
@@ -76,10 +77,10 @@ export const medicineService = {
           tags : ["medicinePosts"]
         }
       });
-      if(res.ok){
-        // revalidateTag("medicinePosts","max");
-        updateTag("medicinePosts");
-      }
+      // if(res.ok){
+      //   revalidateTag("medicinePosts","max");
+      //   updateTag("medicinePosts");
+      // }
       const data = await res.json();
 
       // console.log(data);

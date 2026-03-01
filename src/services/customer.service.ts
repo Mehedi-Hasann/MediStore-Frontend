@@ -284,7 +284,6 @@ export const customerService = {
       medicineId,
       description
     }
-    console.log(reviewData);
     
     try {
       const cookieStore = await cookies();
