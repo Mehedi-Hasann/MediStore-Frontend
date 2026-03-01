@@ -61,7 +61,7 @@ export const medicineService = {
   getAllMedicine : async function (params ?: medicineParams) {
     try {
 
-      const url = new URL(`http://localhost:5000/api/medicines`);
+      const url = new URL(`${API_URL}/api/medicines`);
 
       if(params){
         Object.entries(params).map( ([key,value]) => {
@@ -78,7 +78,7 @@ export const medicineService = {
       });
       if(res.ok){
         // revalidateTag("medicinePosts","max");
-        // updateTag("medicinePosts");
+        updateTag("medicinePosts");
       }
       const data = await res.json();
 
@@ -92,7 +92,7 @@ export const medicineService = {
   },
   getMedicineById : async function(slug : string) {
     try {
-      const res = await fetch(`http://localhost:5000/api/medicines/${slug}`);
+      const res = await fetch(`${API_URL}/api/medicines/${slug}`);
       const data = await res.json();
 
       return {data : data, error : null};

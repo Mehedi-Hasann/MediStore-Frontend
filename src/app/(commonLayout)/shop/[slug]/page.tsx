@@ -9,6 +9,7 @@ export default async function MedicinePage({
 }) {
   const { slug } = await params;
   const { data } = await medicineService.getMedicineById(slug);
+  console.log(data);
 
   return (
     <div className="min-h-screen bg-background text-foreground px-6 py-12">

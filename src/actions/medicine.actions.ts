@@ -17,7 +17,6 @@ export const getAllCategory = async () => {
 export const getAllMedicine = async () => {
   const res = await medicineService.getAllMedicine();
   // updateTag("medicinePosts");
-  // console.log(res);
   return res;
 }
 export const createMedicine = async(data : CreateNewMedicine) => {

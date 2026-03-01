@@ -14,7 +14,6 @@ type Props = {
 };
 
 export default function MedicineCards({ item }: Props) {
-  console.log(item);
 
   const [description, setDescription] = useState("");
 
@@ -26,7 +25,8 @@ export default function MedicineCards({ item }: Props) {
   const handleAddReview = async() => {
     console.log(description);
     const medicineId = item.id;
-    const res = await createReview({medicineId, description} as CreateReview)
+    const res = await createReview({medicineId, description} as CreateReview);
+    console.log("Value received from shop => ",res);
     
     setDescription(""); 
   };
