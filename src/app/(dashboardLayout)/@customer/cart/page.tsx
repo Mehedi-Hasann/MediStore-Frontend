@@ -11,10 +11,11 @@ const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 export default async function CartPage () {
 
   const {data} = await getMyCart();
+  console.log('data is ',data);
   
 const enrichedCartItem = await Promise.all(
   (data ?? []).map(async (item: CartItemProps) => {
-    const res = await fetch(`${API_URL}/api/medicines/${item.medicineId}`);
+    const res = await fetch(`http://localhost:5000/api/medicines/${item.medicineId}`);
     const medicine = await res.json();
 
     return {

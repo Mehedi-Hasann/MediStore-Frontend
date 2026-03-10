@@ -21,7 +21,13 @@ export default async function SingleOrder({
       </div>
     );
   }
-  console.log(order);
+  // const handleCheckOut = (id : string) => {
+  //   try {
+  //     await 
+  //   } catch (error) {
+      
+  //   }
+  // }
 
   return (
     <div className="min-h-screen bg-black p-8 text-gray-100">
@@ -99,6 +105,7 @@ export default async function SingleOrder({
             <div className="flex justify-end pt-4 border-t border-gray-800">
 <Link href={'/checkout/checkout-complete'}>
               <Button
+                // onClick={() => handleCheckOut(order.id)}
                 variant="outline"
                 className="border-gray-700 text-gray-300 hover:bg-gray-800"
               >

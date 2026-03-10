@@ -38,7 +38,9 @@ const router = useRouter();
     onSubmit : async ({value}) => {
       const toastId = toast.loading("Logging User");
       try {
+        // console.log(value);
         const {data, error} = await authClient.signIn.email(value);
+        // console.log({data, error});
 
         if(error){
           toast.error(error.message, {id : toastId});

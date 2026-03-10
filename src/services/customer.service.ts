@@ -15,7 +15,7 @@ export const customerService = {
   getMyInfo : async function () {
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/api/customer/me`,{
+      const res = await fetch(`http://localhost:5000/api/customer/me`,{
         method : "GET",
         headers : {
           "Content-Type" : "application/json",
@@ -34,7 +34,7 @@ export const customerService = {
     // console.log(payload);
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/api/customer/profile`,{
+      const res = await fetch(`http://localhost:5000/api/customer/profile`,{
         method : "PUT",
         headers : {
           "Content-Type" : "application/json",
@@ -54,7 +54,7 @@ export const customerService = {
     try {
       // const medicine = await medicineService.getMedicineById();
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/api/customer/cart`,{
+      const res = await fetch(`http://localhost:5000/api/customer/cart`,{
         method : "GET",
         headers : {
           "Content-Type" : "application/json",
@@ -65,7 +65,7 @@ export const customerService = {
         }
       })
       const data = await res.json();
-      // console.log(data);
+      console.log(data);
       
     
       return {data : data, error : null}
@@ -78,7 +78,7 @@ export const customerService = {
     try {
   
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/api/customer/cart/${id}`,{
+      const res = await fetch(`http://localhost:5000/api/customer/cart/${id}`,{
         method : "GET",
         headers : {
           "Content-Type" : "application/json",
@@ -86,7 +86,6 @@ export const customerService = {
         }
       })
       const data = await res.json();
-      console.log(data);
       
       return {data : data, error : null}
     } catch (error) {
@@ -97,15 +96,21 @@ export const customerService = {
   addToCart : async function (medicineId : string) {
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/api/customer/cart`,{
+      const res = await fetch(`http://localhost:5000/api/customer/cart`,{
         method : "POST",
         headers : {
           "Content-Type" : "application/json",
           Cookie : cookieStore.toString()
         },
-        body : JSON.stringify({medicineId})
+        body : JSON.stringify({medicineId}),
+        next : {
+          tags : ['cartItems']
+        }
       })
       const data = await res.json();
+      if(data){
+        updateTag("cartItems");
+      }
     
       return {data : data, error : null}
     } catch (error) {
@@ -118,7 +123,7 @@ export const customerService = {
 
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/api/customer/cart`,{
+      const res = await fetch(`http://localhost:5000/api/customer/cart`,{
         method : "POST",
         headers : {
           "Content-Type" : "application/json",
@@ -139,7 +144,7 @@ export const customerService = {
 
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/api/customer/decrement`,{
+      const res = await fetch(`http://localhost:5000/api/customer/decrement`,{
         method : "POST",
         headers : {
           "Content-Type" : "application/json",
@@ -161,7 +166,7 @@ export const customerService = {
 
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/api/customer/${id}`,{
+      const res = await fetch(`http://localhost:5000/api/customer/${id}`,{
         method : "DELETE",
         headers : {
           "Content-Type" : "application/json",
@@ -179,10 +184,11 @@ export const customerService = {
   },
 
   createMyOrder : async function (orderData : Order) {
+    console.log(orderData);
     
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/api/orders`,{
+      const res = await fetch(`http://localhost:5000/api/orders`,{
         method : "POST",
         headers : {
           "Content-Type" : "application/json",
@@ -203,7 +209,7 @@ export const customerService = {
 
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/api/customer/orders`,{
+      const res = await fetch(`http://localhost:5000/api/customer/orders`,{
         method : "GET",
         headers : {
           "Content-Type" : "application/json",
@@ -225,7 +231,7 @@ export const customerService = {
 
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/api/customer/orders/${id}`,{
+      const res = await fetch(`http://localhost:5000/api/customer/orders/${id}`,{
         method : "GET",
         headers : {
           "Content-Type" : "application/json",
@@ -241,10 +247,11 @@ export const customerService = {
   },
 
   createMyAddress : async function (addressData : Address) {
+    console.log({addressData});
     
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/api/customer/address`,{
+      const res = await fetch(`http://localhost:5000/api/customer/address`,{
         method : "POST",
         headers : {
           "Content-Type" : "application/json",
@@ -253,6 +260,7 @@ export const customerService = {
         body : JSON.stringify(addressData)
       })
       const data = await res.json();
+      console.log('address ->', data);
       return {data : data, error : null};
 
     } catch (error) {
@@ -264,7 +272,7 @@ export const customerService = {
     
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/api/customer/my-address`,{
+      const res = await fetch(`http://localhost:5000/api/customer/my-address`,{
         method : "GET",
         headers : {
           "Content-Type" : "application/json",
@@ -284,10 +292,11 @@ export const customerService = {
       medicineId,
       description
     }
+    console.log({reviewData});
     
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/api/customer/review`,{
+      const res = await fetch(`http://localhost:5000/api/customer/review`,{
         method : "POST",
         headers : {
           "Content-Type" : "application/json",
@@ -296,11 +305,12 @@ export const customerService = {
         body : JSON.stringify(reviewData)
       })
       const data = await res.json();
+      console.log({data});
 
       return {data : data, error : null};
 
     } catch (error) {
-      return {data : null, error : {message : "Item decrement failed"}}
+      return {data : null, error : {message : "Creating Review failed"}}
     }
   },
 }

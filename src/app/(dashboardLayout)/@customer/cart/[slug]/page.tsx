@@ -13,10 +13,6 @@ export default async function CheckOut({params} : {params : Promise<{slug : stri
   
   return (
     <div>
-      <h1>This is DemoOut</h1>
-      <p>Cart ID : {slug}</p>
-      <p>Quantity : </p>
-      <p>Medicine ID : {}</p>
       <AddressForm slug={slug} address={address} />
     </div>
   );

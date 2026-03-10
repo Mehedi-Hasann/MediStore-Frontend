@@ -23,10 +23,12 @@ import {
 } from "@/components/ui/sheet";
 import { ModeToggle } from "./ModeToggle";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
+import { redirect } from "next/navigation";
 
 interface MenuItem {
   title: string;
-  url: string;
+  url?: string;
   description?: string;
   icon?: React.ReactNode;
   items?: MenuItem[];
@@ -35,8 +37,8 @@ interface MenuItem {
 interface Navbar1Props {
   className?: string;
   logo?: {
-    url: string;
-    src: string;
+    url?: string;
+    src?: string;
     alt: string;
     title: string;
     className?: string;
@@ -51,27 +53,38 @@ interface Navbar1Props {
       title: string;
       url: string;
     };
+    signout: {
+      title : string,
+      url : string
+    }
   };
 }
 
 const Navbar = ({
   logo = {
     url: "https://www.shadcnblocks.com",
-    src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcnblockscom-icon.svg",
+    // src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcnblockscom-icon.svg",
     alt: "logo",
     title: "Medi Store",
   },
   menu = [
-    { title: "Home", url: "/" },
     { title: "Shop", url: "/shop" },
     { title: "Dashboard", url: "/dashboard" },
   ],
   auth = {
     login: { title: "Login", url: "/login" },
     signup: { title: "Sign up", url: "/sign-up" },
+    signout : {title : "Sign Out", url: "/sign-out"}
   },
   className,
 }: Navbar1Props) => {
+
+    const handleSignOut = async() => {
+      await authClient.signOut();
+      redirect('/login');
+
+    }
+
   return (
     <section className={cn("py-4", className)}>
       <div className="container mx-auto">
@@ -79,16 +92,11 @@ const Navbar = ({
         <nav className="hidden items-center justify-between lg:flex">
           <div className="flex items-center gap-6">
             {/* Logo */}
-            <Link href={logo.url} className="flex items-center gap-2">
-              <img
-                src={logo.src}
-                className="max-h-8 dark:invert"
-                alt={logo.alt}
-              />
+            <Button className="flex items-center gap-2">
               <span className="text-lg font-semibold tracking-tighter">
                 {logo.title}
               </span>
-            </Link>
+            </Button>
             <div className="flex items-center">
               <NavigationMenu>
                 <NavigationMenuList>
@@ -105,20 +113,15 @@ const Navbar = ({
             <Button asChild size="sm">
               <Link href={auth.signup.url}>{auth.signup.title}</Link>
             </Button>
+            <Button asChild size="sm" onClick={() => handleSignOut()}>
+              <Link href={auth.signout.url}>{auth.signout.title}</Link>
+            </Button>
           </div>
         </nav>
 
         {/* Mobile Menu */}
         <div className="block lg:hidden">
           <div className="flex items-center justify-between">
-            {/* Logo */}
-            <Link href={logo.url} className="flex items-center gap-2">
-              <img
-                src={logo.src}
-                className="max-h-8 dark:invert"
-                alt={logo.alt}
-              />
-            </Link>
             <Sheet>
               <SheetTrigger asChild>
                 <Button variant="outline" size="icon">
@@ -126,17 +129,7 @@ const Navbar = ({
                 </Button>
               </SheetTrigger>
               <SheetContent className="overflow-y-auto">
-                <SheetHeader>
-                  <SheetTitle>
-                    <Link href={logo.url} className="flex items-center gap-2">
-                      <img
-                        src={logo.src}
-                        className="max-h-8 dark:invert"
-                        alt={logo.alt}
-                      />
-                    </Link>
-                  </SheetTitle>
-                </SheetHeader>
+            
                 <div className="flex flex-col gap-6 p-4">
                   <Accordion
                     type="single"
@@ -153,6 +146,9 @@ const Navbar = ({
                     </Button>
                     <Button asChild>
                       <Link href={auth.signup.url}>{auth.signup.title}</Link>
+                    </Button>
+                    <Button asChild>
+                      <Link href={auth.signout.url}>{auth.signout.title}</Link>
                     </Button>
                   </div>
                 </div>

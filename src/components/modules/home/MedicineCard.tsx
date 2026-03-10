@@ -8,6 +8,7 @@ import { CreateReview, MedicinePost } from "@/types/routes.type";
 import Link from "next/link";
 import { useState } from "react";
 import { createReview } from "@/actions/customer.actions";
+import { toast } from "sonner";
 
 type Props = {
   item: MedicinePost;
@@ -23,12 +24,20 @@ export default function MedicineCards({ item }: Props) {
   };
 
   const handleAddReview = async() => {
-    console.log(description);
-    const medicineId = item.id;
-    const res = await createReview({medicineId, description} as CreateReview);
-    console.log("Value received from shop => ",res);
     
-    setDescription(""); 
+    const toastId = toast.loading("Adding Review...")
+    try {
+          const medicineId = item.id;
+          const res = await createReview({medicineId, description} as CreateReview);
+          setDescription("");
+          console.log(res.data.success===false);
+          if(res.data.success===false){
+            return toast.error("Please Login to Give Review",{id : toastId});
+          }
+          toast.success("Review Added Successfully",{id : toastId})
+    } catch (error) {
+      toast.error("Review Added Failed",{id : toastId})
+    }
   };
 
   return (

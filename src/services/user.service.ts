@@ -7,7 +7,7 @@ export const userService = {
   getSession : async function () {
     try {
           const cookieStore = await cookies();
-          const res = await fetch(`${AUTH_URL}/api/auth/get-session`,{
+          const res = await fetch(`http://localhost:5000/api/auth/get-session`,{
             headers : {
               Cookie : cookieStore.toString(),
             },
@@ -15,6 +15,7 @@ export const userService = {
           });
 
           const session = await res.json();
+          // console.log('get Session => ',session);
           if(session==null){
             return {data : null, error : {message : "Session is missing"}};
           }
@@ -22,7 +23,7 @@ export const userService = {
           return {data : session, error : null};
     } catch (error) {
       console.log(error);
-      return {data : null, error : {message : "Something Went Wront . The error => ",details : error}}
+      return {data : null, error : {message : "Something Went Wrong . The error => ",details : error}}
     }
 
   }
