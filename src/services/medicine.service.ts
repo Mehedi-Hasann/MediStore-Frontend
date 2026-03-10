@@ -24,7 +24,7 @@ export const medicineService = {
       // console.log('hi ',updatedData);
       
       
-      const res = await fetch(`http://localhost:5000/api/seller/medicines`,{
+      const res = await fetch(`${API_URL}/api/seller/medicines`,{
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -48,7 +48,7 @@ export const medicineService = {
   getSingleCategory : async function (cName : string) {
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`http://localhost:5000/api/categories/${cName}`,{
+      const res = await fetch(`${API_URL}/api/categories/${cName}`,{
         method : "GET",
         headers : {
           "Content-Type" : "application/json",
@@ -63,7 +63,7 @@ export const medicineService = {
   getAllMedicine : async function (params ?: Props) {
     try {
 
-      const url = new URL(`http://localhost:5000/api/medicines`);
+      const url = new URL(`${API_URL}/api/medicines`);
 
       if(params){
         Object.entries(params).map( ([key,value]) => {
@@ -94,7 +94,7 @@ export const medicineService = {
   },
   getMedicineById : async function(slug : string) {
     try {
-      const res = await fetch(`http://localhost:5000/api/medicines/${slug}`);
+      const res = await fetch(`${API_URL}/api/medicines/${slug}`);
       const data = await res.json();
 
       return {data : data, error : null};
@@ -106,7 +106,7 @@ export const medicineService = {
   getAllCategory : async function() {
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`http://localhost:5000/api/categories`,{
+      const res = await fetch(`${API_URL}/api/categories`,{
         method : "GET",
         headers : {
           "Content-Type" : "application/json",
@@ -123,7 +123,7 @@ export const medicineService = {
   updateMedicine : async function(slug : string, medicineData : MedicineData) {
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`http://localhost:5000/api/seller/medicines/${slug}`,{
+      const res = await fetch(`${API_URL}/api/seller/medicines/${slug}`,{
         method : "PUT",
         headers : {
           "Content-Type" : "application/json",
@@ -141,7 +141,7 @@ export const medicineService = {
   deleteMedicine : async function (slug : string){
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`http://localhost:5000/api/seller/medicines/${slug}`,{
+      const res = await fetch(`${API_URL}/api/seller/medicines/${slug}`,{
         method : "DELETE",
         headers : {
           "Content-Type" : "application/json",
@@ -161,7 +161,7 @@ export const medicineService = {
   getAllOrder : async function () {
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`http://localhost:5000/api/seller/orders`,{
+      const res = await fetch(`${API_URL}/api/seller/orders`,{
         method : "GET",
         headers : {
           "Content-Type" : "application/json",
@@ -182,7 +182,7 @@ export const medicineService = {
     // console.log('hi => ',JSON.stringify({status}));Y
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`http://localhost:5000/api/seller/orders/${id}`,{
+      const res = await fetch(`${API_URL}/api/seller/orders/${id}`,{
         method : "PATCH",
         headers : {
           "Content-Type" : "application/json",

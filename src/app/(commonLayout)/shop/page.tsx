@@ -20,11 +20,6 @@ export default async function Home({ searchParams}: {searchParams: Promise<Props
 
   const { data } = await getAllMedicine({ search, category, price });
   const { data: categoryData } = await getAllCategory();
-  // console.log(categoryData);
-  
-  categoryData?.data?.map((cat: any) => {
-    console.log(cat.categoryName);
-  });
 
 
   return (

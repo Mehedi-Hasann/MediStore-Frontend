@@ -6,5 +6,5 @@ export const authClient = createAuthClient({
     fetchOptions : {
         credentials : "include",
     }
-    // baseURL: "http://localhost:5000"
+    // baseURL: "${API_URL}"
 })
