@@ -7,7 +7,7 @@ export const adminService = {
   getAllOrder : async function () {
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`http://localhost:5000/api/seller/orders`,{
+      const res = await fetch(`${API_URL}/api/seller/orders`,{
         method : "GET",
         headers : {
           "Content-Type" : "application/json",
@@ -27,7 +27,7 @@ export const adminService = {
   getAllUsers : async function () {
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`http://localhost:5000/api/admin/users`,{
+      const res = await fetch(`${API_URL}/api/admin/users`,{
         method : "GET",
         headers : {
           "Content-Type" : "application/json",
@@ -44,7 +44,7 @@ export const adminService = {
   updateUserStatus : async function (userStatus : string,id : string) {
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`http://localhost:5000/api/admin/users/${id}`,{
+      const res = await fetch(`${API_URL}/api/admin/users/${id}`,{
         method : "PATCH",
         headers : {
           "Content-Type" : "application/json",
@@ -63,7 +63,7 @@ export const adminService = {
   getAllCategory : async function() {
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`http://localhost:5000/api/categories`,{
+      const res = await fetch(`${API_URL}/api/categories`,{
         method : "GET",
         headers : {
           "Content-Type" : "application/json",
@@ -80,7 +80,7 @@ export const adminService = {
   getSingleCategory : async function (slug : string) {
       try {
         const cookieStore = await cookies();
-        const res = await fetch(`http://localhost:5000/api/categories/${slug}`,{
+        const res = await fetch(`${API_URL}/api/categories/${slug}`,{
           method : "GET",
           headers : {
             "Content-Type" : "application/json",
@@ -95,7 +95,7 @@ export const adminService = {
   getStatistics : async function () {
       try {
         const cookieStore = await cookies();
-        const res = await fetch(`http://localhost:5000/api/admin/stats`,{
+        const res = await fetch(`${API_URL}/api/admin/stats`,{
           method : "GET",
           headers : {
             "Content-Type" : "application/json",
