@@ -51,7 +51,7 @@ export default function AddressForm({slug, address }: AddressProps) {
     }
   }
   return (
-    <div className="min-h-screen bg-black text-white p-6">
+    <div className="min-h-[calc(100vh-100px)] bg-black text-white p-6">
       <div className="max-w-xl mx-auto">
 
         <Card className="bg-zinc-900 border border-zinc-800 rounded-2xl shadow-xl">

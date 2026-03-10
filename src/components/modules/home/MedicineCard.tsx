@@ -46,6 +46,7 @@ export default function MedicineCards({ item }: Props) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
+
       <Card className="rounded-2xl shadow-md hover:shadow-xl transition duration-300">
         <CardHeader>
           <div className="flex justify-between items-center">

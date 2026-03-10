@@ -1,4 +1,5 @@
 
+import { Props } from "@/app/(commonLayout)/shop/page";
 import { CreateNewMedicine, MedicineData, medicineParams, OrderStatus } from "@/types/routes.type";
 import {  updateTag } from "next/cache";
 import { cookies } from "next/headers";
@@ -59,7 +60,7 @@ export const medicineService = {
       return {data : null, error : {message : "Internal Server Error From getSingleCategory"}};
     }
   },
-  getAllMedicine : async function (params ?: medicineParams) {
+  getAllMedicine : async function (params ?: Props) {
     try {
 
       const url = new URL(`http://localhost:5000/api/medicines`);

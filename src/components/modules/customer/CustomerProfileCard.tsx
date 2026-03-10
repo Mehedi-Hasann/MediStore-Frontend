@@ -37,7 +37,7 @@ export function CustomerProfileCard({ user }: { user: Customer }) {
   }
 
   return (
-    <Card className="max-w-sm mx-auto shadow-lg rounded-2xl border">
+    <Card className="max-w-lg  mx-auto shadow-lg rounded-2xl border">
       <CardHeader className="text-center">
         <CardTitle className="text-2xl font-semibold">
           {isEditing ? (

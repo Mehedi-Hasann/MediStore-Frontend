@@ -30,7 +30,7 @@ export default async function SingleOrder({
   // }
 
   return (
-    <div className="min-h-screen bg-black p-8 text-gray-100">
+    <div className="min-h-[calc(100vh-100px)] bg-black p-8 text-gray-100">
 
       <div className="max-w-4xl mx-auto space-y-6">
 

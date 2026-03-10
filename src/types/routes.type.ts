@@ -87,10 +87,8 @@ export interface Order {
 
 export interface medicineParams {
   search ?: string,
-  price ?: number,
+  price ?: string,
   category ?: string,
-  sortBy ?: string,
-  sortOrder ?: string
 }
 export interface MedicineData {
   name ?: string,

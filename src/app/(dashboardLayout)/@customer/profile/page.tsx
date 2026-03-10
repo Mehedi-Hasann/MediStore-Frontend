@@ -9,8 +9,7 @@ export default async function ProfilePage () {
   
   return (
     
-    <div>
-      <h1>User Profile Page</h1>
+    <div className="my-40 ">
 
       <CustomerProfileCard user = {data.data} />
 

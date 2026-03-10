@@ -1,8 +1,8 @@
 "use server";
 
+import { Props } from "@/app/(commonLayout)/shop/page";
 import {  medicineService } from "@/services/medicine.service";
 import { CreateNewMedicine, MedicineData, OrderStatus } from "@/types/routes.type";
-import { updateTag } from "next/cache";
 
 export const getSingleMedicine = async(slug : string) => {
   const res = await medicineService.getMedicineById(slug)
@@ -14,8 +14,8 @@ export const getAllCategory = async () => {
   // console.log(res);
   return res;
 }
-export const getAllMedicine = async () => {
-  const res = await medicineService.getAllMedicine();
+export const getAllMedicine = async ({search,category,price} : Props ) => {
+  const res = await medicineService.getAllMedicine({search,category,price} as {search : string, category : string, price : string});
   // updateTag("medicinePosts");
   return res;
 }

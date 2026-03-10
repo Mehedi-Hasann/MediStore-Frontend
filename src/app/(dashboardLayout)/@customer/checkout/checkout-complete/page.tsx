@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function CheckoutSuccessUI() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-zinc-950 via-black to-zinc-900 flex items-center justify-center px-6">
+    <div className="min-h-[calc(100vh-100px)] bg-gradient-to-br from-zinc-950 via-black to-zinc-900 flex items-center justify-center px-6">
       <div className="w-full max-w-2xl">
 
         <div className="bg-zinc-900/70 backdrop-blur-xl border border-zinc-800 rounded-3xl shadow-2xl p-16 text-center relative overflow-hidden">
