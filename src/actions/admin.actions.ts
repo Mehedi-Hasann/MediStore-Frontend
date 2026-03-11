@@ -18,7 +18,6 @@ export const updateUserStatus = async(userStatus: string, id : string) => {
 
 export const getAllCategory = async () => {
   const res = await adminService.getAllCategory();
-  // console.log(res);
   return res;
 }
 

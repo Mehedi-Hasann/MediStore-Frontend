@@ -62,15 +62,18 @@ export const adminService = {
   },
   getAllCategory : async function() {
     try {
+      
       const cookieStore = await cookies();
       const res = await fetch(`${API_URL}/api/categories`,{
         method : "GET",
         headers : {
           "Content-Type" : "application/json",
           Cookie : cookieStore.toString()
-        }
+        },
       });
+
       const data = await res.json();
+      console.log('getAllCategory data => ',data);
     
       return {data : data , error : null}
     } catch (error) {

@@ -96,7 +96,7 @@ export function SellerOrderCard({ items }: { items: Order[] }) {
                   className="border rounded-md px-2 py-1 text-sm font-semibold"
                 >
                   {Object.values(OrderStatus).map((status) => (
-                    <option key={status} value={status}>
+                    <option className="bg-black text-white" key={status} value={status}>
                       {status}
                     </option>
                   ))}
