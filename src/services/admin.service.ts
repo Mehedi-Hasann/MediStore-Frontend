@@ -53,7 +53,7 @@ export const adminService = {
         body : JSON.stringify({userStatus})
       });
       const data = await res.json();
-      console.log(data);
+
       return {data : data, error : null}
 
     } catch (error) {

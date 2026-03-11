@@ -15,7 +15,7 @@ export default async function CartPage () {
   
 const enrichedCartItem = await Promise.all(
   (data ?? []).map(async (item: CartItemProps) => {
-    const res = await fetch(`/api/medicines/${item.medicineId}`);
+    const res = await fetch(`${API_URL}/api/medicines/${item.medicineId}`);
     const medicine = await res.json();
 
     return {

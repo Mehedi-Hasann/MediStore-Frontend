@@ -88,7 +88,6 @@ export const medicineService = {
 
       return {data: data, error : null};
     } catch (error) {
-      console.log(error);
       return {data : null, error : {message : "Something Went Wrong !"}};
     }
   },
@@ -99,7 +98,7 @@ export const medicineService = {
 
       return {data : data, error : null};
     } catch (error) {
-      console.log(error);
+     
       return {data : null, error : {message : "Something went wrong to fetch single medicine"}}
     }
   },

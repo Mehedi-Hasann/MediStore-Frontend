@@ -96,6 +96,7 @@ export const customerService = {
   addToCart : async function (medicineId : string) {
     try {
       const cookieStore = await cookies();
+      console.log(API_URL)
       const res = await fetch(`${API_URL}/api/customer/cart`,{
         method : "POST",
         headers : {

@@ -22,7 +22,7 @@ export const userService = {
 
           return {data : session, error : null};
     } catch (error) {
-      console.log(error);
+    
       return {data : null, error : {message : "Something Went Wrong . The error => ",details : error}}
     }
 

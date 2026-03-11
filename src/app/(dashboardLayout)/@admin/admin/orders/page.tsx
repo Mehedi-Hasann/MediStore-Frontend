@@ -9,7 +9,7 @@ export default async function OrdersPage () {
   const {data} = await adminService.getAllOrder();
 
   const session = await getSession();
-  console.log(session);
+
   
   return (
     
