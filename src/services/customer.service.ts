@@ -167,7 +167,7 @@ export const customerService = {
 
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/api/customer/cart/${id}`,{
+      const res = await fetch(`${API_URL}/api/customer/${id}`,{
         method : "DELETE",
         headers : {
           "Content-Type" : "application/json",

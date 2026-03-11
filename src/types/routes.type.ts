@@ -63,6 +63,10 @@ export interface CreateNewMedicine {
   price : number,
   stock : number
 }
+export interface CreateNewCategory {
+  categoryName : string,
+  description ?: string
+}
 export interface Orders  {
   id?: string;
   totalAmount?: number;

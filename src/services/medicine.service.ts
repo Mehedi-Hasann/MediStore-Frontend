@@ -1,6 +1,6 @@
 
 import { Props } from "@/app/(commonLayout)/shop/page";
-import { CreateNewMedicine, MedicineData, medicineParams, OrderStatus } from "@/types/routes.type";
+import { CreateNewCategory, CreateNewMedicine, MedicineData, medicineParams, OrderStatus } from "@/types/routes.type";
 import {  updateTag } from "next/cache";
 import { cookies } from "next/headers";
 
@@ -45,6 +45,40 @@ export const medicineService = {
       return {data : null, error : {message : "New Medicine Creation Failed"}}
     }
   },
+
+  createCategory : async function (data : CreateNewCategory) {
+    try {
+      const cookieStore = await cookies(); 
+      const val = await this.getSingleCategory(data.categoryName);
+      
+      const updatedData = {
+        description : data.description,
+        categoryName : data.categoryName
+      }
+      console.log({updatedData});
+      
+      
+      const res = await fetch(`${API_URL}/api/categories`,{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Cookie: cookieStore.toString(),
+        },
+        body : JSON.stringify(updatedData)
+      });
+      const result = await res.json();
+      if (result.error) {
+        return {
+          data: null,
+          error: { message: "Error: Post not created." },
+        };
+      }
+      return {data : result, error : null }
+    } catch (error) {
+      return {data : null, error : {message : "New Medicine Creation Failed"}}
+    }
+  },
+
   getSingleCategory : async function (cName : string) {
     try {
       const cookieStore = await cookies();

@@ -2,7 +2,7 @@
 
 import { Props } from "@/app/(commonLayout)/shop/page";
 import {  medicineService } from "@/services/medicine.service";
-import { CreateNewMedicine, MedicineData, OrderStatus } from "@/types/routes.type";
+import { CreateNewCategory, CreateNewMedicine, MedicineData, OrderStatus } from "@/types/routes.type";
 
 export const getSingleMedicine = async(slug : string) => {
   const res = await medicineService.getMedicineById(slug)
@@ -21,6 +21,11 @@ export const getAllMedicine = async ({search,category,price} : Props ) => {
 }
 export const createMedicine = async(data : CreateNewMedicine) => {
   const res = await medicineService.createMedicine(data);
+  return res;
+}
+
+export const createCategory = async(data : CreateNewCategory) => {
+  const res = await medicineService.createCategory(data);
   return res;
 }
 
