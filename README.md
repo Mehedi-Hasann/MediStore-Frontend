@@ -159,28 +159,3 @@ Register → Login → Browse Shop → Add to Cart → Checkout → Track Order
 ### 🏪 Seller Journey
 Register → Login → Add Medicines → Manage Stock → View Orders → Update Status
 
-### 📊 Order Status
-       ┌──────────────┐
-       │    PLACED    │
-       └──────────────┘
-        /            \
-       /              \
-   (seller)        (customer)
-   confirms         cancels
-       │                \
-       ▼                 ▼
-┌──────────────┐   ┌──────────────┐
-│  PROCESSING  │   │  CANCELLED   │
-└──────────────┘   └──────────────┘
-       │
-       ▼
-┌──────────────┐
-│   SHIPPED    │
-└──────────────┘
-       │
-       ▼
-┌──────────────┐
-│  DELIVERED   │
-└──────────────┘
-
-                   
