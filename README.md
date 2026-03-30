@@ -154,54 +154,10 @@ MediStore is a full-stack e-commerce web application for purchasing medicines. C
 ## Flow Diagrams
 
 ### 💊 Customer Journey
-┌──────────────┐
-│   Register   │
-└──────────────┘
-        │
-        ▼
-┌──────────────┐
-│  Browse Shop │
-└──────────────┘
-        │
-        ▼
-┌──────────────┐
-│ Add to Cart  │
-└──────────────┘
-        │
-        ▼
-┌──────────────┐
-│   Checkout   │
-└──────────────┘
-        │
-        ▼
-┌──────────────┐
-│ Track Order  │
-└──────────────┘
+Register → Login → Browse Shop → Add to Cart → Checkout → Track Order
 
 ### 🏪 Seller Journey
-┌──────────────┐
-│   Register   │
-└──────────────┘
-        │
-        ▼
-┌──────────────┐
-│Add Medicines │
-└──────────────┘
-        │
-        ▼
-┌──────────────┐
-│ Manage Stock │
-└──────────────┘
-        │
-        ▼
-┌──────────────┐
-│ View Orders  │
-└──────────────┘
-        │
-        ▼
-┌──────────────┐
-│Update Status │
-└──────────────┘
+Register → Login → Add Medicines → Manage Stock → View Orders → Update Status
 
 ### 📊 Order Status
        ┌──────────────┐
@@ -225,6 +181,6 @@ MediStore is a full-stack e-commerce web application for purchasing medicines. C
        ▼
 ┌──────────────┐
 │  DELIVERED   │
-└──────────────┘z
+└──────────────┘
 
                    
