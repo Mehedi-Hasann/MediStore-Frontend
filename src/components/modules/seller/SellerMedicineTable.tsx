@@ -37,8 +37,12 @@ export function MedicinesTable({ medicines }: Props) {
   const handleDelete = async (id : string) => {
     const toastId = toast.loading("Deleting...")
     try {
-      await deleteMedicine(id);
-      toast.success("Medicine Deletion Success",{id : toastId})
+      const result = await deleteMedicine(id);
+      if(result.data){
+        toast.success("Medicine Deletion Success",{id : toastId})
+      }else{
+        toast.error(result.error?.message || "Something Went Wrong", {id: toastId})
+      }
     } catch (error) {
       toast.error("Failed to deleting Medicine", {id : toastId})
     }

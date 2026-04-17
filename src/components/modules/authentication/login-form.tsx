@@ -45,7 +45,6 @@ const router = useRouter();
         }
         router.replace("/shop");
         toast.success("Log In Successfully",{id : toastId});
-
       } catch (error) {
         toast.error("Internal Server Error", {id : toastId})
       }

@@ -13,9 +13,12 @@ export default function CustomerCartItem({ item }: { item: CartItemProps }) {
   const increaseItem = async(medicineId : string) => {
     try {
       const toastId = toast.loading("Item incrementing...");
-      await incrementItem(medicineId);
-
-      toast.success("Item Increment Successful",{id : toastId})
+      const result =  await incrementItem(medicineId);
+      if(result.data){
+        toast.success("Item Increment Successful",{id : toastId})
+      }else{
+        toast.error(result.error?.message || "Something Went Wrong", {id: toastId})
+      }
       
     } catch (error) {
       toast.error("Internal Server Error")
@@ -25,11 +28,11 @@ export default function CustomerCartItem({ item }: { item: CartItemProps }) {
     try {
       const toastId = toast.loading("Item decrementing...");
       const res = await decrementItem(medicineId);
-      if(res.data===null){
-        return toast.error("Item can not be Negative",{id : toastId});
+      if(res.data){
+        toast.success("Item Decrement Successful",{id : toastId})
+      }else{
+        toast.error(res.error?.message || "Something Went Wrong", {id: toastId})
       }
-
-      toast.success("Item Decrement Successful",{id : toastId})
       
     } catch (error) {
       toast.error("Internal Server Error")
@@ -38,8 +41,13 @@ export default function CustomerCartItem({ item }: { item: CartItemProps }) {
   const remoteCartItem = async(id : string) => {
     try {
       const toastId = toast.loading("Item removing...");
-      await removeCartItem(id);
-      toast.success("Item Remove Successful",{id : toastId})
+      const res = await removeCartItem(id);
+      console.log(res);
+      if(res.data){
+        toast.success("Item Remove Successful",{id : toastId})
+      }else{
+        toast.error(res.error?.message || "Something Went Wrong", {id: toastId})
+      }
     } catch (error) {
       toast.error("Internal Server Error")
     }

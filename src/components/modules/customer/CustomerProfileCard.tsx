@@ -59,8 +59,12 @@ export function CustomerProfileCard({ data }: { data: ProfileData }) {
   const handleSaveProfile = async () => {
     try {
       const toastId = toast.loading("Updating Profile...")
-      await editMyInfo({ name: formData.name, email: formData.email })
-      toast.success("Profile Updated Successfully", { id: toastId })
+      const result = await editMyInfo({ name: formData.name, email: formData.email })
+      if(result.data){
+        toast.success("Profile Updated Successfully", { id: toastId })
+      }else{
+        toast.error(result.error?.message || "Something Went Wrong", { id: toastId })
+      }
       setIsEditingProfile(false)
     } catch {
       toast.error("Failed to Update Profile")
@@ -79,8 +83,12 @@ export function CustomerProfileCard({ data }: { data: ProfileData }) {
   const handleSaveAddress = async () => {
     try {
       const toastId = toast.loading("Updating Address...")
-      await updateMyAddress(formData.address as UpdateAddress)
-      toast.success("Address Updated Successfully", { id: toastId })
+      const result = await updateMyAddress(formData.address as UpdateAddress)
+      if(result.data){
+        toast.success("Address Updated Successfully", { id: toastId })
+      }else{
+        toast.error(result.error?.message || "Something Went Wrong", { id: toastId })
+      }
       setIsEditingAddress(false)
     } catch {
       toast.error("Failed to Update Address")

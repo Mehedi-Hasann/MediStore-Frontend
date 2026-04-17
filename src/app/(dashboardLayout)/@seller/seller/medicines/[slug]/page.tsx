@@ -29,7 +29,11 @@ export default function EditMedicinePage() {
       }
       try {
         const res = await updateMedicine(slug, medicineData )
-        toast.success("Medicine Update Successful", {id : toastId})
+        if (res.data.success) {
+          toast.success("Medicine Update Successful", {id : toastId})
+        } else {
+          toast.error(res.error?.message || "Something Went Wrong", {id: toastId})
+        }
       } catch (error) {
         toast.error("Something Went Wrong", {id: toastId})
       }

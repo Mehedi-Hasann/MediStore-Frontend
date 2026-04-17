@@ -10,8 +10,16 @@ export default function AddToCartButton({medicineId} : {medicineId : string}) {
   const handleAddToCart = async() => {
     const toastId = toast.loading("Adding item to cart.....")
     try {
-      await addToCart(medicineId);
-      toast.success("Adding Item to Cart Successful",{id : toastId})
+      const result = await addToCart(medicineId);
+      console.log(result);
+      if(result.data){
+        toast.success("Adding Item to Cart Successful",{id : toastId})
+      }
+      else{
+          toast.error(result?.data?.message || "Failed to add item to cart", {
+        id: toastId,
+      })
+      }
     } catch (error) {
       toast.error("Adding item to Card Failed")
     }

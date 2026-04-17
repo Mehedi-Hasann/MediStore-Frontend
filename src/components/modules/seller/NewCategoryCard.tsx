@@ -34,9 +34,13 @@ export function NewCategoryCard () {
         categoryName : value.categoryName
       };
       try {
-        await createCategory(categoryData);
-        toast.success("Category Created Successfully",{id : toastId})
-        form.reset();
+        const result = await createCategory(categoryData);
+        if(result.data){
+          toast.success("Category Created Successfully",{id : toastId})
+          form.reset();
+        }else{
+          toast.error(result.error?.message || "Something Went Wrong", {id: toastId})
+        }
       } catch (error) {
         toast.error("Category Creation Failed",{id : toastId})
       }

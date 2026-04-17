@@ -41,9 +41,13 @@ export function NewMedicineCard () {
         category : value.categoryName
       };
       try {
-        await createMedicine(medicineData);
-        toast.success("Medicine Created Successfully",{id : toastId})
-        form.reset();
+        const result = await createMedicine(medicineData);
+        if(result.data){
+          toast.success("Medicine Created Successfully",{id : toastId})
+          form.reset();        
+        }else{
+          toast.error(result?.error?.message, {id : toastId})
+        }
       } catch (error) {
         toast.error("Medicine Creation Failed",{id : toastId})
       }

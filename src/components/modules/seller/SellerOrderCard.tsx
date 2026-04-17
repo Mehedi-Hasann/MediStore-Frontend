@@ -28,8 +28,12 @@ export function SellerOrderCard({ items }: { items: Order[] }) {
     setIsUpdating((prev) => ({ ...prev, [id]: true }))
 
     try {
-      await updateOrderStatusBySeller({ id, orderStatus })
-      toast.success("Status Updated Successfully", { id: toastId })
+      const result = await updateOrderStatusBySeller({ id, orderStatus })
+      if(result.data){
+        toast.success("Status Updated Successfully", { id: toastId })
+      }else{
+        toast.error(result.error?.message || "Something Went Wrong", { id: toastId })
+      }
 
       setSelectedStatus((prev) => {
         const copy = { ...prev }
