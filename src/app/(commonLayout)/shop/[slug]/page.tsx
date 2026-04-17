@@ -2,6 +2,12 @@ import AddToCartButton from "@/components/modules/customer/AddToCartButton";
 import { Badge } from "@/components/ui/badge";
 import { medicineService } from "@/services/medicine.service";
 
+interface Review {
+  id: string;
+  description: string;
+  createdAt: string;
+}
+
 export default async function MedicinePage({
   params,
 }: {
@@ -88,7 +94,7 @@ export default async function MedicinePage({
 
           <div className="space-y-4">
             {data.reviews && data.reviews.length > 0 ? (
-              data.reviews.map((review: any) => (
+              data.reviews.map((review: Review) => (
                 <div
                   key={review.id}
                   className="bg-card text-card-foreground p-5 rounded-2xl border shadow-sm"

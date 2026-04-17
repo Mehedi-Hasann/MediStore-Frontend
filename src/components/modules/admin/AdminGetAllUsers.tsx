@@ -10,7 +10,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { updateUserStatus } from "@/actions/admin.actions";
 import { toast } from "sonner";
@@ -28,7 +27,7 @@ export default function AdminGetAllUsers({ users }: Props) {
     }, {} as Record<string, string>)
   );
 
-  const handleStatusChange = (id: string, newStatus: "APPROVED" | "REJECTED") => {
+  const handleStatusChange = (id: string, newStatus: "ACTIVE" | "BLOCKED" | "DELETED" ) => {
     setUserStatus((prev) => ({
       ...prev,
       [id]: newStatus,
@@ -39,6 +38,7 @@ export default function AdminGetAllUsers({ users }: Props) {
     const toastId = toast.loading("User Updating....")
     try {
       const status = userStatus[id];
+      console.log(status);
       const res = await updateUserStatus(status , id as string);
       toast.success("User Status Update Successfully",{id : toastId})
     } catch (error) {
@@ -85,13 +85,14 @@ export default function AdminGetAllUsers({ users }: Props) {
                     onChange={(e) =>
                       handleStatusChange(
                         user.id,
-                        e.target.value as "APPROVED" | "REJECTED"
+                        e.target.value as "ACTIVE" | "DELETED" | "BLOCKED"
                       )
                     }
                     className="border rounded px-2 py-1 bg-amber-800"
                   >
-                    <option value="APPROVED" className="text-black">APPROVED</option>
-                    <option value="REJECTED" className="text-black">REJECTED</option>
+                    <option value="ACTIVE" className="text-black">ACTIVE</option>
+                    <option value="DELETED" className="text-black">DELETED</option>
+                    <option value="BLOCKED" className="text-black">BLOCKED</option>
                   </select>
                 </TableCell>
 

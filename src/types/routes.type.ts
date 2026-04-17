@@ -74,7 +74,7 @@ export interface CreateNewCategory {
 }
 export interface Orders  {
   id?: string;
-  totalAmount?: number;
+  totalAmount: number;
   quantity?: number;
   userId?: string;
   medicineId?: string;

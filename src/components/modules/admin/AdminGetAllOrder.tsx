@@ -12,7 +12,14 @@ import {
 
 import { Order } from "@/types/routes.type"
 
-export function AdminOrderCard({ items }: { items: Order[] }) {
+type ApiResponse = {
+  success: boolean
+  message: string
+  data: Order[]
+}
+
+export function AdminOrderCard({ items }: { items: ApiResponse }) {
+  const orders = items?.data ?? []
 
   return (
     <Table>
@@ -30,44 +37,39 @@ export function AdminOrderCard({ items }: { items: Order[] }) {
       </TableHeader>
 
       <TableBody>
-        {items.length === 0 && (
+        {orders.length === 0 && (
           <TableRow>
-            <TableCell colSpan={8} className="text-center py-6">
+            <TableCell colSpan={6} className="text-center py-6">
               No Orders Found
             </TableCell>
           </TableRow>
         )}
 
-        {items.map((item) => {
+        {orders.map((item) => (
+          <TableRow key={item.id}>
+            <TableCell className="font-medium break-all">
+              {item.id}
+            </TableCell>
 
+            <TableCell className="break-all">
+              {item.medicineId}
+            </TableCell>
 
-          return (
-            <TableRow key={item.id}>
-              <TableCell className="font-medium break-all">
-                {item.id}
-              </TableCell>
+            <TableCell>{item.quantity}</TableCell>
 
-              <TableCell className="break-all">
-                {item.medicineId}
-              </TableCell>
+            <TableCell>{item.status}</TableCell>
 
-              <TableCell>{item.quantity}</TableCell>
+            <TableCell>
+              {item.createdAt
+                ? new Date(item.createdAt).toLocaleString()
+                : ""}
+            </TableCell>
 
-              <TableCell>{item.status}</TableCell>
-
-              <TableCell>
-                {item.createdAt
-                  ? new Date(item.createdAt).toLocaleString()
-                  : ""}
-              </TableCell>
-
-              <TableCell className="text-right font-semibold">
-                ${item.totalAmount.toFixed(2)}
-              </TableCell>
-
-            </TableRow>
-          )
-        })}
+            <TableCell className="text-right font-semibold">
+              ${Number(item.totalAmount).toFixed(2)}
+            </TableCell>
+          </TableRow>
+        ))}
       </TableBody>
     </Table>
   )

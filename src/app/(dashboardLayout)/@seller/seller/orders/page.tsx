@@ -11,7 +11,7 @@ export default async function OrdersPage () {
     
     <div>
 
-      <SellerOrderCard items = {data} />
+      <SellerOrderCard items = {data.data} />
       
     </div>
     

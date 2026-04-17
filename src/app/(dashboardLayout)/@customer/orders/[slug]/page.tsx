@@ -1,8 +1,6 @@
 import { getMySingleOrders } from "@/actions/customer.actions";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
 export default async function SingleOrder({
   params,

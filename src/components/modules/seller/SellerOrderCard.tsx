@@ -15,6 +15,7 @@ import { updateOrderStatusBySeller } from "@/actions/medicine.actions"
 import { toast } from "sonner"
 
 export function SellerOrderCard({ items }: { items: Order[] }) {
+  console.log(items);
   const [selectedStatus, setSelectedStatus] = useState<Record<string, OrderStatus>>({})
   const [isUpdating, setIsUpdating] = useState<Record<string, boolean>>({})
 
