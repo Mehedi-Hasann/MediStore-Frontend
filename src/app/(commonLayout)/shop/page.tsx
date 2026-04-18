@@ -18,58 +18,59 @@ export default async function Home({ searchParams}: {searchParams: Promise<Props
   const category = params?.category || "";
   const price = params?.price || "";
 
-
   const { data } = await getAllMedicine({ search, category, price });
   const result = await getAllCategory();
   const categoryData = result.data;
 
   return (
     <div>
-<form className="flex items-center justify-center gap-4 my-6">
 
-  <input
-    name="search"
-    defaultValue={search}
-    placeholder="Enter Medicine Name"
-    className="border p-2 rounded-md"
-  />
+      <form className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 my-6 px-4">
 
-  <select
-    name="category"
-    defaultValue={category}
-    className="border p-2 rounded-md bg-black text-white"
-  >
-    <option value="">All Categories</option>
+        <input
+          name="search"
+          defaultValue={search}
+          placeholder="Enter Medicine Name"
+          className="w-full sm:w-auto border p-2 rounded-md"
+        />
 
-    {categoryData?.data.map((cat: any) => (
-      <option key={cat.id} value={cat.categoryName}>
-        {cat.categoryName}
-      </option>
-    ))}
+        <select
+          name="category"
+          defaultValue={category}
+          className="w-full sm:w-auto border p-2 rounded-md bg-black text-white"
+        >
+          <option value="">All Categories</option>
 
-  </select>
+          {categoryData?.data.map((cat: any) => (
+            <option key={cat.id} value={cat.categoryName}>
+              {cat.categoryName}
+            </option>
+          ))}
 
-  <input
-    name="price"
-    defaultValue={price}
-    placeholder="Enter Price"
-    className="border p-2 rounded-md"
-  />
+        </select>
 
-  <button
-    type="submit"
-    className="bg-blue-500 text-white px-4 py-2 rounded-md"
-  >
-    Search
-  </button>
+        <input
+          name="price"
+          defaultValue={price}
+          placeholder="Enter Price"
+          className="w-full sm:w-auto border p-2 rounded-md"
+        />
 
-</form>
+        <button
+          type="submit"
+          className="w-full sm:w-auto bg-blue-500 text-white px-4 py-2 rounded-md"
+        >
+          Search
+        </button>
 
-      <div className="grid grid-cols-3 max-w-7xl mx-auto px-4 gap-6">
+      </form>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto px-4 gap-6">
         {data?.data?.data?.map((item: MedicinePost) => (
           <MedicineCards key={item.id} item={item} />
         ))}
       </div>
+
     </div>
   );
 }
