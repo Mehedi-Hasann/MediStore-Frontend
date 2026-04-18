@@ -237,7 +237,7 @@ export const customerService = {
       })
       const data = await res.json();
       // console.log(data)
-      await this.removeCartItem(cartId)
+      // await this.removeCartItem(cartId)
       return {data : data, error : null};
 
     } catch (error) {
