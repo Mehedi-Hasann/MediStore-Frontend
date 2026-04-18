@@ -44,11 +44,12 @@ export default function EditMedicinePage() {
     async function fetchMedicine() {
       try {
         const res = await getSingleMedicine(slug);
+        // console.log(res.data.data)
 
-        if(res?.data){
-          form.setFieldValue("name" , res.data.name);
-          form.setFieldValue("price" , res.data.price);
-          form.setFieldValue("stock" , res.data.stock);
+        if(res?.data.data){
+          form.setFieldValue("name" , res.data.data.name);
+          form.setFieldValue("price" , res.data.data.price);
+          form.setFieldValue("stock" , res.data.data.stock);
 
         }
       } catch (error) {

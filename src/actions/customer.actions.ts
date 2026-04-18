@@ -4,8 +4,8 @@ import { customerService, EditInfo } from "@/services/customer.service"
 import { Address, CreateReview, PaymentStatus, UpdateAddress } from "@/types/routes.type";
 import { updateTag } from "next/cache";
 
-export const getMyInfo = async() => {
-  const res = await customerService.getMyInfo();
+export const getMyProfile = async() => {
+  const res = await customerService.getMyProfile();
   return res;
 }
 

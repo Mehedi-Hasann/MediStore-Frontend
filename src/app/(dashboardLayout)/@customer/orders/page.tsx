@@ -14,7 +14,7 @@ export default async function OrdersPage () {
 
       <div className="grid grid-cols-2 gap-5">
               {
-                data.map((order : OrderProps) => (
+                data.data.map((order : OrderProps) => (
                   < CustomerOrdersItem key={order.id} order = {order} />
                 ))
               }

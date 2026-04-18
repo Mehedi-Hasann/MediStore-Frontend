@@ -41,7 +41,7 @@ export default async function Home({ searchParams}: {searchParams: Promise<Props
   >
     <option value="">All Categories</option>
 
-    {categoryData?.map((cat: any) => (
+    {categoryData?.data.map((cat: any) => (
       <option key={cat.id} value={cat.categoryName}>
         {cat.categoryName}
       </option>
@@ -66,7 +66,7 @@ export default async function Home({ searchParams}: {searchParams: Promise<Props
 </form>
 
       <div className="grid grid-cols-3 max-w-7xl mx-auto px-4 gap-6">
-        {data?.data?.map((item: MedicinePost) => (
+        {data?.data?.data?.map((item: MedicinePost) => (
           <MedicineCards key={item.id} item={item} />
         ))}
       </div>

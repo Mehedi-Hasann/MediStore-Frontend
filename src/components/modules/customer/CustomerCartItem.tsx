@@ -5,16 +5,17 @@ import { Button } from "@/components/ui/button";
 import { Trash2, Plus, Minus } from "lucide-react";
 import { CartItemProps } from "@/types/routes.type";
 import { toast } from "sonner";
-import { createMyOrder, decrementItem, getMyAllOrders, incrementItem, removeCartItem } from "@/actions/customer.actions";
+import { createMyOrder, decrementItem, incrementItem, removeCartItem } from "@/actions/customer.actions";
 
 export default function CustomerCartItem({ item }: { item: CartItemProps }) {
-  const totalPrice = item.quantity * (item.medicine?.price ?? 0);
+  const totalPrice = item.quantity * (item.medicine?.data.price ?? 0);
 
   const increaseItem = async(medicineId : string) => {
     try {
       const toastId = toast.loading("Item incrementing...");
       const result =  await incrementItem(medicineId);
-      if(result.data){
+      // console.log(result); // done
+      if(result.data.success){
         toast.success("Item Increment Successful",{id : toastId})
       }else{
         toast.error(result.error?.message || "Something Went Wrong", {id: toastId})
@@ -28,14 +29,18 @@ export default function CustomerCartItem({ item }: { item: CartItemProps }) {
     try {
       const toastId = toast.loading("Item decrementing...");
       const res = await decrementItem(medicineId);
+      // console.log(res);
       if(res.data){
         toast.success("Item Decrement Successful",{id : toastId})
       }else{
         toast.error(res.error?.message || "Something Went Wrong", {id: toastId})
       }
       
-    } catch (error) {
-      toast.error("Internal Server Error")
+    } catch (error: unknown) {
+      const toastId = toast.loading("Item decrementing...");
+      const message = error instanceof Error ? error.message : "Internal Server Error";
+      console.log(message);
+      toast.error(message, {id : toastId});
     }
   }
   const remoteCartItem = async(id : string) => {
@@ -43,7 +48,7 @@ export default function CustomerCartItem({ item }: { item: CartItemProps }) {
       const toastId = toast.loading("Item removing...");
       const res = await removeCartItem(id);
       console.log(res);
-      if(res.data){
+      if(res.data.success){
         toast.success("Item Remove Successful",{id : toastId})
       }else{
         toast.error(res.error?.message || "Something Went Wrong", {id: toastId})
@@ -55,7 +60,7 @@ export default function CustomerCartItem({ item }: { item: CartItemProps }) {
   const orderNow = async(cartId: string) => {
     try {
       const result = await createMyOrder(cartId as string);
-
+      // console.log('result of PaymentUrl -> ', result.data.data.paymentUrl);
       
       if (result.data && result.data.data.paymentUrl) {
 
@@ -80,11 +85,11 @@ export default function CustomerCartItem({ item }: { item: CartItemProps }) {
         {/* LEFT - Medicine Info */}
         <div className="flex flex-col space-y-2">
           <h2 className="text-lg font-semibold text-white">
-            {item.medicine?.name}
+            {item.medicine?.data.name}
           </h2>
 
           <p className="text-sm text-gray-400">
-            Category: {item.medicine?.categoryName}
+            Category: {item.medicine?.data.categoryName}
           </p>
 
           <p className="text-xs text-gray-500">
@@ -98,7 +103,7 @@ export default function CustomerCartItem({ item }: { item: CartItemProps }) {
           <div className="text-center">
             <p className="text-xs text-gray-500">Unit Price</p>
             <p className="font-medium text-gray-200">
-              $ {item.medicine?.price}
+              $ {item.medicine?.data.price}
             </p>
           </div>
 

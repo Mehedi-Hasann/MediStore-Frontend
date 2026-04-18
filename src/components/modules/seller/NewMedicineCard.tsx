@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { CreateNewMedicine } from "@/types/routes.type";
 import { useForm } from "@tanstack/react-form";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -58,9 +57,9 @@ export function NewMedicineCard () {
     const fetchCategories = async () => {
       const data = await getAllCategory();
       
-      if(data?.data){
-        setCategories(data.data);
-        form.setFieldValue("categoryName", data.data[0].categoryName);
+      if(data?.data.data){
+        setCategories(data.data.data);
+        form.setFieldValue("categoryName", data.data.data[0].categoryName);
       }
     }
     fetchCategories();

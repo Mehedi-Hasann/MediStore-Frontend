@@ -106,10 +106,15 @@ export interface MedicineData {
 }
 
 export interface Medicine {
-  id: string;
-  name: string;
-  price: number;
-  description?: string;
+  success : boolean;
+  message : string;
+  data : {
+      id: string;
+      name: string;
+      price: number;
+      categoryName : string;
+      description?: string;
+  }
 }
 
 export interface CartItemProps {
@@ -119,7 +124,7 @@ export interface CartItemProps {
   quantity: number;
   createdAt: string;
   updatedAt: string;
-  medicine?: Medicine; // optional, fetch & attach later
+  medicine?: Medicine; 
 }
 
 export interface OrderProps {

@@ -15,6 +15,7 @@ type Props = {
 };
 
 export default function MedicineCards({ item }: Props) {
+  // console.log(item);
 
   const [description, setDescription] = useState("");
 
@@ -29,8 +30,9 @@ export default function MedicineCards({ item }: Props) {
           const medicineId = item.id;
           const res = await createReview({medicineId, description} as CreateReview);
           setDescription("");
+          console.log(res);
           if(res.data.success===false){
-            return toast.error("Please Login to Give Review",{id : toastId});
+            return toast.error(res.data?.message,{id : toastId});
           }
           toast.success("Review Added Successfully",{id : toastId})
     } catch (error) {

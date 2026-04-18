@@ -10,7 +10,7 @@ export default async function SingleOrder({
   const { slug } = await params;
 
   const response = await getMySingleOrders(slug);
-  const order = response?.data;
+  const order = response?.data.data;
 
   if (!order) {
     return (

@@ -9,7 +9,7 @@ export default async function SingleCategoryPage ({params} : {params : {slug : s
     
     <div>
 
-      <AdminSingleCategoryCard data = {data} />
+      <AdminSingleCategoryCard data = {data.data} />
 
     </div>
     

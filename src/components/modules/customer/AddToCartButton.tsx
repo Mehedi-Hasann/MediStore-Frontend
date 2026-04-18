@@ -11,8 +11,7 @@ export default function AddToCartButton({medicineId} : {medicineId : string}) {
     const toastId = toast.loading("Adding item to cart.....")
     try {
       const result = await addToCart(medicineId);
-      console.log(result);
-      if(result.data){
+      if(result.data.success){
         toast.success("Adding Item to Cart Successful",{id : toastId})
       }
       else{

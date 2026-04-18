@@ -15,6 +15,7 @@ export default async function MedicinePage({
 }) {
   const { slug } = await params;
   const { data } = await medicineService.getMedicineById(slug);
+  // console.log('exprected => ',data);
 
   return (
     <div className="min-h-[calc(100vh-75px)] bg-background text-foreground px-6 py-12">
@@ -23,15 +24,15 @@ export default async function MedicinePage({
         {/* Header */}
         <div className="space-y-3">
           <Badge variant="secondary" className="px-4 py-1 rounded-full">
-            {data.categoryName}
+            {data.data.categoryName}
           </Badge>
 
           <h1 className="text-4xl font-bold tracking-tight">
-            {data.name}
+            {data.data.name}
           </h1>
 
           <p className="text-muted-foreground text-sm">
-            Medicine ID: {data.id}
+            Medicine ID: {data.data.id}
           </p>
         </div>
 
@@ -41,7 +42,7 @@ export default async function MedicinePage({
           <div className="bg-card text-card-foreground p-6 rounded-2xl border shadow-sm">
             <p className="text-sm text-muted-foreground">Price</p>
             <p className="text-2xl font-semibold">
-              ${data.price}
+              ${data.data.price}
               <span className="text-sm font-normal text-muted-foreground">
                 {" "} / unit
               </span>
@@ -51,14 +52,14 @@ export default async function MedicinePage({
           <div className="bg-card text-card-foreground p-6 rounded-2xl border shadow-sm">
             <p className="text-sm text-muted-foreground">Stock</p>
             <p className="text-2xl font-semibold">
-              {data.stock} Units
+              {data.data.stock} Units
             </p>
           </div>
 
           <div className="bg-card text-card-foreground p-6 rounded-2xl border shadow-sm">
             <p className="text-sm text-muted-foreground">Category</p>
             <p className="text-2xl font-semibold">
-              {data.categoryName}
+              {data.data.categoryName}
             </p>
           </div>
 
@@ -70,14 +71,14 @@ export default async function MedicinePage({
           <div className="bg-card text-card-foreground p-6 rounded-2xl border shadow-sm">
             <p className="text-sm text-muted-foreground">Created At</p>
             <p className="font-medium">
-              {new Date(data.createdAt).toLocaleDateString()}
+              {new Date(data.data.createdAt).toLocaleDateString()}
             </p>
           </div>
 
           <div className="bg-card text-card-foreground p-6 rounded-2xl border shadow-sm">
             <p className="text-sm text-muted-foreground">Last Updated</p>
             <p className="font-medium">
-              {new Date(data.updatedAt).toLocaleDateString()}
+              {new Date(data.data.updatedAt).toLocaleDateString()}
             </p>
           </div>
 
@@ -85,7 +86,7 @@ export default async function MedicinePage({
 
         {/* Action */}
         <div>
-          <AddToCartButton medicineId={data.id} />
+          <AddToCartButton medicineId={data.data.id} />
         </div>
 
         {/* Reviews Section */}
@@ -93,8 +94,8 @@ export default async function MedicinePage({
           <h2 className="text-2xl font-semibold">Customer Reviews</h2>
 
           <div className="space-y-4">
-            {data.reviews && data.reviews.length > 0 ? (
-              data.reviews.map((review: Review) => (
+            {data.data.reviews && data.data.reviews.length > 0 ? (
+              data.data.reviews.map((review: Review) => (
                 <div
                   key={review.id}
                   className="bg-card text-card-foreground p-5 rounded-2xl border shadow-sm"

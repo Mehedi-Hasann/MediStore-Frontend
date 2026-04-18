@@ -12,7 +12,7 @@ export default async function UsersPage() {
   return (
     <div>
       <Link href={'categories/create-category'}><Button className="mx-auto flex justify-center items-center w-3/12">Add Category</Button></Link>
-      <AdminGetAllCategoryCard data={data} />
+      <AdminGetAllCategoryCard data={data.data} />
     </div>
   );
 }

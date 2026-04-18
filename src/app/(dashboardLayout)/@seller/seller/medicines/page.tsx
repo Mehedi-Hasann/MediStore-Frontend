@@ -10,7 +10,7 @@ export default async function AllMedicinesPage() {
 
   return (
     <div className="space-y-6">
-      <MedicinesTable medicines = {medicines.data} />
+      <MedicinesTable medicines = {medicines.data.data} />
     </div>
   )
 }

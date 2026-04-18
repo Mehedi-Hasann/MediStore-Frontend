@@ -13,7 +13,7 @@ export interface EditInfo{
 }
 
 export const customerService = {
-  getMyInfo : async function () {
+  getMyProfile : async function () {
     try {
       const cookieStore = await cookies();
       const res = await fetch(`${API_URL}/api/customer/me`,{
@@ -95,6 +95,7 @@ export const customerService = {
 
   addToCart : async function (medicineId : string) {
     try {
+      // console.log(medicineId);
       const cookieStore = await cookies();
       const res = await fetch(`${API_URL}/api/customer/cart`,{
         method : "POST",
@@ -108,6 +109,7 @@ export const customerService = {
         }
       })
       const data = await res.json();
+      // console.log(data);
       if(data){
         updateTag("cartItems");
       }
@@ -152,11 +154,12 @@ export const customerService = {
         },
         body : JSON.stringify(medicineInfo),
       })
-      if(!res.ok){
-        return {data : null, error : {message : "Item decrement failed"}}
+      const val = await res.json();
+      // console.log('val is => ',val.message);
+      if(!val.success){
+        return {data : null, error : {message : val.message || "Item decrement failed"}}
       }
-      const data = await res.json();
-      return {data : data, error : null}
+      return {data : val, error : null}
     } catch (error) {
       return {data : null, error : {message : "Item decrement failed"}}
     }
@@ -210,16 +213,16 @@ export const customerService = {
     try {
       const userAddress = await this.getMyAddress();
       const cartItem = await this.getMySingleCart(cartId);
-      const medicineId = cartItem.data.medicineId;
-      const quantity = cartItem.data.quantity;
-      const addressId = userAddress.data.id;
+      const medicineId = cartItem.data.data.medicineId;
+      const quantity = cartItem.data.data.quantity;
+      const addressId = userAddress.data.data.id;
 
       const payload = {
         medicineId,
         quantity,
         addressId
       }
-      // console.log(payload);
+      console.log(payload);
       if(!addressId){
         return {data : null, error : {message : "Provide your Address"}}
       }
@@ -328,7 +331,7 @@ export const customerService = {
       const cookieStore = await cookies();
       console.log('updatedAddressData => ', updatedAddressData);
       const res = await fetch(`${API_URL}/api/customer/update-my-address`,{
-        method : "POST",
+        method : "PUT",
         headers : {
           "Content-Type" : "application/json",
           Cookie : cookieStore.toString()
